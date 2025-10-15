@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 import sys
 from google.genai import types
-
+from config import SYSTEM_PROMPT
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -17,7 +17,7 @@ else:
     user_prompt = sys.argv[1]
    
 messages = [types.Content(role="user", parts=[types.Part(text=user_prompt)]),]
-response = client.models.generate_content(model='gemini-2.0-flash-001', contents = messages)
+response = client.models.generate_content(model='gemini-2.0-flash-001', contents = messages, config = types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT))
 
 print(response.text)
 if '--verbose' in sys.argv[2:]:
