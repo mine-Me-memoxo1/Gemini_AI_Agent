@@ -56,7 +56,7 @@ try:
                 else:
                     if verbose:
                         print(f"-> {function_call_result.parts[0].function_response.response}")
-                    messages.append(types.Content(parts=[types.Part(function_response=function_call_result.parts[0].function_response)], role='user'))
+                        messages.append(types.Content(parts=[types.Part(function_response=function_call_result.parts[0].function_response)], role='user'))
             
 
             
